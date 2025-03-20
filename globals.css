@@ -1,0 +1,12 @@
+:root {
+  --bg-color: #f4f4f4;
+  --text-color: #333;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #f7f7f7;
+  margin: 0;
+  padding: 20px;
+}
