@@ -46,9 +46,37 @@ const colorSchemes = {
     Bad: "#E2711D",
     Awful: "#CC5803",
   },
+  rank: {
+    Amazing: "#9FE3FA",
+    Great: "#84E1BD",
+    Neutral: "#DFB457",
+    Bad: "#C9C9C9",
+    Awful: "#7F492A",
+  },
+  nights: {
+    Amazing: "#DFB457",
+    Great: "#DC9E64",
+    Neutral: "#DA969B",
+    Bad: "#B97ABB",
+    Awful: "#804AB0",
+  },
+  spirited: {
+    Amazing: "#57DEA8",
+    Great: "#81E7BE",
+    Neutral: "#ABEFD4",
+    Bad: "#D5F7EA",
+    Awful: "#FFFFFF",
+  },
+  rose: {
+    Amazing: "#FF6290",
+    Great: "#FF7A9B",
+    Neutral: "#FF92AD",
+    Bad: "#FFAABF",
+    Awful: "#FFC2D1",
+  },
 };
 
-export default function MoodSelector({ onSelectMood, onSchemeChange }) {
+export default function MoodSelector({ onSelectMood, onSchemeChange, colorScheme }) {
   const [selectedScheme, setSelectedScheme] = useState("default");
 
   useEffect(() => {
@@ -64,7 +92,6 @@ export default function MoodSelector({ onSelectMood, onSchemeChange }) {
 
   return (
     <div className={styles.moodSelectorContainer}>
-      {/* scheme dropdown */}
       <div className={styles.schemeSelector}>
         <label>Choose a color scheme: </label>
         <select value={selectedScheme} onChange={(e) => handleSchemeChange(e.target.value)}>
@@ -76,18 +103,22 @@ export default function MoodSelector({ onSelectMood, onSchemeChange }) {
         </select>
       </div>
 
-      {/* mood buttons */}
       <div className={styles.moodSelector}>
-        {Object.keys(colorSchemes[selectedScheme]).map((mood) => (
-          <button
-            key={mood}
-            className={styles.moodButton}
-            style={{ backgroundColor: colorSchemes[selectedScheme][mood] }}
-            onClick={() => onSelectMood(mood)}
-          >
-            {mood}
-          </button>
-        ))}
+        {Object.keys(colorScheme)
+          .filter((key) => key !== "bg" && key !== "text" && key !== "dayNumber")
+          .map((mood) => (
+            <button
+              key={mood}
+              className={styles.moodButton}
+              style={{ 
+                backgroundColor: colorScheme[mood], 
+                color: colorScheme.dayNumber
+              }}
+              onClick={() => onSelectMood(mood)}
+            >
+              {mood}
+            </button>
+          ))}
       </div>
     </div>
   );

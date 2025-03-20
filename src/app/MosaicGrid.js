@@ -30,7 +30,9 @@ export default function MosaicGrid({ moods, colorScheme, onDaySelect }) {
               style={{ backgroundColor: mood ? colorScheme[mood] : "#ddd" }}
               onClick={() => onDaySelect(`${year}-${month}-${day}`)}
             >
+            <span className={styles.dayNumber} style={{ color: colorScheme.dayNumber }}>
               {day}
+            </span>
             </div>
           );
         })}
